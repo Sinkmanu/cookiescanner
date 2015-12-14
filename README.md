@@ -11,9 +11,9 @@ Tool created to do more easy the process of check the cookie flag when we are an
 
 If you want to know for why could be useful this tools?
 
-https://www.owasp.org/index.php/SecureFlag
-https://www.owasp.org/index.php/HttpOnly
-https://www.owasp.org/index.php/Testing_for_cookies_attributes_%28OTG-SESS-002%29
+https://www.owasp.org/index.php/SecureFlag <br>
+https://www.owasp.org/index.php/HttpOnly <br>
+https://www.owasp.org/index.php/Testing_for_cookies_attributes_%28OTG-SESS-002%29 <br>
 
 
 Usage
