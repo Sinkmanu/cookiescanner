@@ -35,8 +35,20 @@ Options:
   --nocolor             Disable color (for the normal format output)
   -g GOOGLE, --google=GOOGLE
                         Search in google by domain
+```
 
+Requirements
+------
 
+```
+requests >= 2.8.1
+BeautifulSoup >= 4.2.1
+```
+
+Install requirements
+------
+```
+pip3 install --upgrade -r requirements.txt
 ```
 
 TODO

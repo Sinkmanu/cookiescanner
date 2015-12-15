@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
 #  This program is free software: you can redistribute it and/or modify
@@ -49,7 +49,7 @@ def headersURL(line, info, nocolor, formatoutput):
     if (urlparse(url).scheme == ''):
         url = 'http://%s'%url
     try:
-        r = requests.get(url, verify=False, allow_redirects=True)
+        r = requests.get(url, verify=False, allow_redirects=True, timeout=1.0)
         if (formatoutput == "normal"):
             printNormal(line, r.cookies, nocolor, info)
         elif (formatoutput == "json"):
@@ -57,11 +57,18 @@ def headersURL(line, info, nocolor, formatoutput):
         elif (formatoutput == "xml"):
             printXML(line, r.cookies, info)
         elif (formatoutput == "csv"):
+            if info:
+                print("url,cookie name,secure,httponly,value,path,expires")
+            else:
+                print("url,cookie name,secure,httponly")
             printCsv(line, r.cookies, info)
         elif (formatoutput == "grepable"):
             printGrepable(line, r.cookies, info)
     except:
-        print("[ERR] %s - Connection failed."% url)
+        if (formatoutput == "normal"):
+            print("[ERR] %s - Connection failed."% url)
+        else:
+            pass
 
 
 def readFile(filename, info, nocolor, formatoutput):
@@ -76,7 +83,6 @@ def readFile(filename, info, nocolor, formatoutput):
 
 def printNormal(line, cookies, nocolor, info):
     if nocolor:
-        # Set to white
         color_blue = white
         color_red = white
     else:
@@ -96,7 +102,6 @@ def printNormal(line, cookies, nocolor, info):
         else:
             secureResult = 'Secure: %s'%str(secure)
         print("%s[*] Name: %s\n\t%s\n\t%s%s%s"%(white, name, secureResult, white, httponlyResult, white))
-        # If info, print all
         if info:
             if cookie.expires is not None:
                 expires = datetime.datetime.fromtimestamp(cookie.expires).strftime('%Y-%m-%d %H:%M:%S')
@@ -119,7 +124,6 @@ def printGrepable(line, cookies, info):
             secureResult = "NO"
         else:
             secureResult = "YES"
-        # If info, print all
         if info:
             if cookie.expires is not None:
                 expires = datetime.datetime.fromtimestamp(cookie.expires).strftime('%Y-%m-%d %H:%M:%S')
@@ -211,10 +215,6 @@ def printJson(line, cookies, info):
 
 
 def printCsv(line, cookies, info):
-    if info:
-        print("url,cookie name,secure,httponly,value,path,expires")
-    else:
-        print("url,cookie name,secure,httponly")
     for cookie in cookies:
         name = cookie.name
         secure = cookie.secure
