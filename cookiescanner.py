@@ -49,7 +49,9 @@ def headersURL(line, info, nocolor, formatoutput):
     if (urlparse(url).scheme == ''):
         url = 'http://%s'%url
     try:
-        r = requests.get(url, verify=False, allow_redirects=True, timeout=1.0)
+        r = requests.get(url, verify=False, allow_redirects=False, timeout=1.0)
+        if (r.status_code == 302) and (len(r.cookies) == 0):
+            r = requests.get(url, verify=False, allow_redirects=True, timeout=1.0)
         if (formatoutput == "normal"):
             printNormal(line, r.cookies, nocolor, info)
         elif (formatoutput == "json"):
