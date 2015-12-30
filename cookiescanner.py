@@ -26,8 +26,8 @@ import re
 import time
 
 __author__="sinkmanu"
-__date__ ="$15.12.2015$"
-__version__ = "0.1"
+__date__ ="$30.12.2015$"
+__version__ = "0.2"
 
 user_agent = { 'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0' }
 requests.packages.urllib3.disable_warnings()
@@ -276,8 +276,8 @@ def opciones():
         parser.add_option("-I", "--info",
                   action="store_true", dest="info", default=False, help="More info")
         group = OptionGroup(parser, "Performance")
-        group.add_option("-t", type="float", dest="timeout", default=1.0, help="Timeout of response.")
-        group.add_option("-d", type="float", dest="delay", default=0.0, help="Delay between requests.")
+        group.add_option("-t", type="float", dest="timeout", default=1.0, help="Timeout of response")
+        group.add_option("-d", type="float", dest="delay", default=0.0, help="Delay between requests")
         parser.add_option_group(group)
         (options, args) = parser.parse_args()
         if (len(sys.argv) == 1):

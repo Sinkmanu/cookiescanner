@@ -28,13 +28,17 @@ Options:
   -h, --help            show this help message and exit
   -i INPUT, --input=INPUT
                         File input with the list of webservers
-  -I, --info            More info
   -u URL, --url=URL     URL
   -f FORMAT, --format=FORMAT
                         Output format (json, xml, csv, normal, grepable)
-  --nocolor             Disable color (for the normal format output)
   -g GOOGLE, --google=GOOGLE
                         Search in google by domain
+  --nocolor             Disable color (for the normal format output)
+  -I, --info            More info
+
+  Performance:
+    -t TIMEOUT          Timeout of response
+    -d DELAY            Delay between requests
 ```
 
 Requirements
